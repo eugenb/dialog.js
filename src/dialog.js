@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Dialog.js is a multipurpose lightweight highly configurable dialog library.
  *
@@ -8,6 +6,9 @@
  *
  * @licence MIT <https://raw.githubusercontent.com/eugenb/dialog.js/master/LICENSE>
  */
+
+'use strict';
+
 class Dialog {
 
     /**
