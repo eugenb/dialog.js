@@ -1,5 +1,5 @@
 # Dialog.js
-Dialog.js is a multipurpose lightweight highly configurable dialog library built by [Eugen Bușoiu](https://eugenbusoiu.com).
+Dialog.js is a multipurpose lightweight highly configurable dialog pure JavaScript library.
 
 ## Usage
 ```js
