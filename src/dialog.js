@@ -154,8 +154,8 @@ class Dialog {
             this.dlgPlaceholder.appendChild(this.dlg);
 
             // Set position coordinates based on provided values
-            this.dlg.style.marginLeft = this.options.position.x !== undefined ? `${this.options.position.x}px` : `${parseInt((viewportWidth - this.options.size.x) / 2)}px`;
-            this.dlg.style.marginTop = this.options.position.y !== undefined ? `${this.options.position.y}px` : `${parseInt((viewportHeight - this.options.size.y) / 2)}px`;
+            this.dlg.style.marginLeft = this.options.position.x !== undefined ? `${this.options.position.x}px` : `${(viewportWidth - parseInt(this.options.size.x)) / 2}px`;
+            this.dlg.style.marginTop = this.options.position.y !== undefined ? `${this.options.position.y}px` : `${(viewportHeight - parseInt(this.options.size.y)) / 2}px`;
         }
 
         // AutoClose
