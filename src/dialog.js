@@ -1,7 +1,7 @@
 /**
  * Dialog.js is a multipurpose lightweight highly configurable dialog library.
  *
- * @author Eugen Bușoiu <hello@eugen.pro>
+ * @author Eugen Bușoiu <eugen@thedeveloper.me>
  * @link https://github.com/eugenb/dialog.js
  *
  * @licence MIT <https://raw.githubusercontent.com/eugenb/dialog.js/master/LICENSE>
@@ -22,18 +22,18 @@ class Dialog {
         // Default options
         this.options = {
 
-            // Classes
+            // Styling classes
             dialogClassName: null,
             dialogPlaceholderClassName: null,
 
-            // Sizes
+            // Size
             size: {
                 x: 0,
                 y: 0
             },
             position: {},
 
-            // AutoShow
+            // Automatically trigger dialog show
             autoShow: true,
 
             // Events
@@ -48,9 +48,8 @@ class Dialog {
                 onClose: null
             },
 
-            // Link dialog relative to element
+            // Attach dialog relative to element
             linkTo: null
-
         };
 
         // Extend options
@@ -129,17 +128,11 @@ class Dialog {
         // Append dialog
         document.body.appendChild(this.dlgPlaceholder);
 
-        // Calculate sizes
-        this.options.size = {
-            x: this.dlg.offsetWidth,
-            y: this.dlg.offsetHeight
-        };
-
         // Calculate viewport size(s)
         let viewportWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth || 0,
             viewportHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0;
 
-        // Render dialog linked to an existing element
+        // Render dialog attached to an existing element
         if (this.options.linkTo !== null) {
 
             // Move dialog next to linkTo element
@@ -153,9 +146,27 @@ class Dialog {
             // Append dialog to placeholder
             this.dlgPlaceholder.appendChild(this.dlg);
 
+            // Get dialog width
+            const dlgStyle = getComputedStyle(this.dlg),
+                dlgStyleWidth = dlgStyle.getPropertyValue('width'),
+                dlgStyleHeight = dlgStyle.getPropertyValue('height');
+
+            // Calculate sizes
+            this.options.size = {
+                x: dlgStyleWidth.match(/px/) ?
+                    parseInt(dlgStyleWidth.replace(/px/, '')) :
+                    dlgStyleWidth.match(/%/) ? (viewportWidth * parseInt(dlgStyleWidth.replace(/%/, ''))) / 100 : this.dlg.offsetWidth,
+                y: dlgStyleHeight.match(/px/) ?
+                    parseInt(dlgStyleHeight.replace(/px/, '')) :
+                    dlgStyleHeight.match(/%/) ? (viewportHeight * parseInt(dlgStyleHeight.replace(/%/, ''))) / 100 : this.dlg.offsetHeight
+            };
+
             // Set position coordinates based on provided values
-            this.dlg.style.marginLeft = this.options.position.x !== undefined ? `${this.options.position.x}px` : `${(viewportWidth - parseInt(this.options.size.x)) / 2}px`;
-            this.dlg.style.marginTop = this.options.position.y !== undefined ? `${this.options.position.y}px` : `${(viewportHeight - parseInt(this.options.size.y)) / 2}px`;
+            this.dlg.style.marginLeft = this.options.position.x !== undefined ? `${this.options.position.x}px` :
+                `${(viewportWidth - parseInt(this.options.size.x)) / 2}px`;
+
+            this.dlg.style.marginTop = this.options.position.y !== undefined ? `${this.options.position.y}px` :
+                `${(viewportHeight - parseInt(this.options.size.y)) / 2}px`;
         }
 
         // AutoClose
