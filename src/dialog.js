@@ -180,18 +180,18 @@ class Dialog {
         if (this.options.closeOnEsc) {
             document.addEventListener('keyup', e => {
 
-                let key = e.keyCode || e.which,
+                let key = e.code,
                     target = e.target;
 
                 if (target.nodeType === 3) {
                     target = target.parentNode;
                 }
 
-                if (!/(38|40|27|32)/.test(key) || /input|textarea/i.test(target.tagName)) {
+                if (!/(ArrowUp|ArrowDown|Escape|Space)/.test(key) || /input|textarea/i.test(target.tagName)) {
                     return;
                 }
 
-                if (key === 27 && this.isVisible()) {
+                if (key === 'Escape' && this.isVisible()) {
                     this.close();
                 }
             });
