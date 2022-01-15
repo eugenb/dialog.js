@@ -1,7 +1,7 @@
 /**
  * Dialog.js is a multipurpose lightweight highly configurable dialog library.
  *
- * @author Eugen Bușoiu <eugen@thedeveloper.me>
+ * @author Eugen Bușoiu <eugen@eugen.pro>
  * @link https://github.com/eugenb/dialog.js
  *
  * @licence MIT <https://raw.githubusercontent.com/eugenb/dialog.js/master/LICENSE>
@@ -117,7 +117,7 @@ class Dialog {
 
         // Set dialog placeholder attributes
         this.dlgPlaceholder.setAttribute('dialog-id', Math.random().toString(36).substr(2, 9));
-        this.dlgPlaceholder.style.display = 'none';
+        this.dlgPlaceholder.style.visibility = 'hidden';
 
         // Set dialog attributes
         this.dlg.setAttribute('dialog-id', Math.random().toString(36).substr(2, 9));
@@ -219,7 +219,7 @@ class Dialog {
                 }
 
                 // Show dialog
-                this.dlgPlaceholder.style.display = '';
+                this.dlgPlaceholder.style.visibility = 'visible';
 
                 // Trigger onBeforeShow callback
                 if (typeof this.options.callback.onShow === 'function') {
@@ -263,7 +263,7 @@ class Dialog {
      * @return {boolean}
      */
     isVisible() {
-        return !(this.dlgPlaceholder.style.display === 'none');
+        return !(this.dlgPlaceholder.style.visibility === 'visible');
     }
 
     /**
