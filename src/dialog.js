@@ -263,7 +263,7 @@ class Dialog {
      * @return {boolean}
      */
     isVisible() {
-        return !(this.dlgPlaceholder.style.visibility === 'visible');
+        return this.dlgPlaceholder && !(this.dlgPlaceholder.style.visibility === 'visible');
     }
 
     /**
